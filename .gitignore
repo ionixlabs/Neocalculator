@@ -1,0 +1,48 @@
+# Flutter/Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+
+# Android
+android/**/generated/
+android/gen/
+android/local.properties
+android/native-libs.jar
+*.ap_
+*.apk
+*.dex
+*.aab
+
+# iOS
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/GeneratedPluginRegistrant.h
+ios/GeneratedPluginRegistrant.m
+*.moved-aside
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+
+# Web
+build/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+*.swp
+*.out
+*.bak
+
+# Others
+.DS_Store
+node_modules/
