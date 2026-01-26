@@ -31,7 +31,17 @@ enum CalculatorButton {
   zero('0'),
   decimal('.'),
   clear('C'),
-  equal('=');
+  equal('='),
+  // Scientific buttons
+  sin('sin'),
+  cos('cos'),
+  tan('tan'),
+  log('log'),
+  ln('ln'),
+  sqrt('√'),
+  power('^'),
+  pi('π'),
+  e('e');
 
   final String value;
   const CalculatorButton(this.value);

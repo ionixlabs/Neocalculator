@@ -43,6 +43,17 @@ void main() {
       expect('5÷0'.calculate().output, 'Infinity'); 
       // Verify what math_expressions returns. implementation uses RealEvaluator.
     });
+
+    test('Scientific Functions', () {
+      expect('sin(0)'.calculate().output, '0');
+      expect('cos(0)'.calculate().output, '1');
+      expect('tan(0)'.calculate().output, '0');
+      expect('log(100)'.calculate().output, '2'); // log base 10 of 100
+      expect('ln(e)'.calculate().output, '1');
+      expect('sqrt(16)'.calculate().output, '4');
+      expect('2^3'.calculate().output, '8');
+      expect('π'.calculate().output.substring(0, 4), '3.14');
+    });
   });
 
   group('Expression Validation', () {

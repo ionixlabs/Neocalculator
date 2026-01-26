@@ -25,7 +25,7 @@ extension CalculatorExtension on String {
   ResultModel calculate(
       {bool skipErrorChecking = false, GrammarParser? parser}) {
     GrammarParser p = parser ?? GrammarParser();
-    String finalInput = _fixParenthesis._replaceOperationSymbols.removeCommas;
+    String finalInput = removeCommas._fixParenthesis._replaceOperationSymbols;
     bool hasFraction = finalInput.contains('.');
     try {
       Expression exp = p.parse(finalInput);
@@ -82,9 +82,9 @@ extension CalculatorExtension on String {
   }
 
   String formatExpression() {
-    String expression = removeSpaces.removeCommas;
+    String expression = removeCommas;
     String parts = expression.splitMapJoin(
-      RegExp(r"[+\-x÷%()]"),
+      RegExp(r"[+\-x÷%()^√/ ]"),
       onMatch: (m) => m.group(0) ?? '',
       onNonMatch: (n) {
         if (n.isEmpty) return '';
@@ -115,7 +115,7 @@ extension CalculatorExtension on String {
       }
 
       if (!number.isNumber) {
-        throw Exception('Not a number to format $number');
+        return number;
       }
 
       final isInt = !number.contains('.');
@@ -130,12 +130,17 @@ extension CalculatorExtension on String {
       return formattedString;
     } catch (e, stack) {
       logger.e('Error formatting to thousands', stackTrace: stack, error: e);
-      return this;
+      return input;
     }
   }
 
   String get _replaceOperationSymbols {
-    return replaceAll('x', '*').replaceAll('÷', '/').replaceAll('%', '/100');
+    return replaceAll('x', '*')
+        .replaceAll('÷', '/')
+        .replaceAll('%', '/100')
+        .replaceAll('π', 'pi')
+        .replaceAll('√', 'sqrt')
+        .replaceAll('log(', 'log(10,');
   }
 
   String get _fixParenthesis {

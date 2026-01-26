@@ -14,6 +14,7 @@ class CalculatorController extends GetxController {
   String get exp => textCtrl.text;
 
   bool isClearing = false;
+  bool isScientificMode = false;
   final textCtrl = TextEditingController();
 
   int get baseOffset => textCtrl.selection.baseOffset;
@@ -285,5 +286,36 @@ class CalculatorController extends GetxController {
     output = '';
     textCtrl.clear();
     update();
+  }
+
+  void toggleScientificMode() {
+    isScientificMode = !isScientificMode;
+    update();
+  }
+
+  void onScientificPressed(String value) {
+    if (value == 'π' || value == 'e') {
+      _addNumber(value, baseOffset);
+    } else if (value == '^') {
+      _addOperator(value, baseOffset);
+    } else {
+      // sin, cos, tan, log, ln, √
+      _addScientificFunction(value, baseOffset);
+    }
+    _mediumHaptic();
+  }
+
+  void _addScientificFunction(String func, [int? position]) {
+    final textToInsert = '$func(';
+    String newExp;
+    int? newOffset;
+    if (exp.isNoSelection(position)) {
+      newExp = (exp + textToInsert).formatExpression();
+    } else {
+      final result = exp.insertText(textToInsert, position!);
+      newExp = result.$1;
+      newOffset = result.$2;
+    }
+    updateExpression(newExp, newOffset);
   }
 }
