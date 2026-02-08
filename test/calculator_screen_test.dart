@@ -32,7 +32,7 @@ void main() {
           return <String, dynamic>{
             'appName': 'NeoCalculator',
             'packageName': 'com.neocalculator',
-            'version': '1.0.0',
+            'version': '1.0.1',
             'buildNumber': '1',
           };
         }
